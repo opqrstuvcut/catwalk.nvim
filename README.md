@@ -1,6 +1,6 @@
 # nvim-running-cat 🐈💨
 
-![demo](https://github.com/opqrstuvcut/catwalk.nvim/images/demo.gif)
+![demo](https://raw.githubusercontent.com/opqrstuvcut/catwalk.nvim/refs/heads/main/images/demo.gif)
 
 A playful Neovim statusline plugin that shows a cat running faster as your CPU usage increases.
 
