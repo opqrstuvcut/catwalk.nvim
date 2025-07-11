@@ -1,4 +1,4 @@
-# nvim-running-cat 🐈💨
+# catwalk.nvim 🐈💨
 
 ![demo](https://raw.githubusercontent.com/opqrstuvcut/catwalk.nvim/refs/heads/main/images/demo.gif)
 
