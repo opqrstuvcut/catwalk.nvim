@@ -33,7 +33,12 @@ end
 local timer = vim.loop.new_timer()
 
 local function update()
-	cpu_usage = get_cpu_usage()
+	local ok, usage = pcall(get_cpu_usage)
+	if ok then
+		cpu_usage = usage
+	else
+		cpu_usage = 0
+	end
 	local interval = (100 - cpu_usage) * 10 + config.min_interval
 
 	pos = pos - 1
