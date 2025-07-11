@@ -13,11 +13,15 @@ A playful Neovim statusline plugin that shows a cat running faster as your CPU u
   "opqrstuvcut/catwalk",
   config = function()
     require("lualine").setup {
+      -- Set the statusline refresh interval to sync with the plugin.
+      options = {
+        refresh = { statusline = 100 },
+      },
       sections = {
         lualine_x = {
-          require("catwalk").component
-        }
-      }
+          require("catwalk").component,
+        },
+      },
     }
   end
 }
