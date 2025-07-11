@@ -30,10 +30,14 @@ A playful Neovim statusline plugin that shows a cat running faster as your CPU u
 ### Configuration
 
 ```lua
-require("running_cat").setup {
-  field_width = 10,          -- Width of the cat's path
-  cat_char = "🐈️",         -- Emoji used for the cat
-  high_speed_postfix = "💨", -- Add this emoji when CPU usage is high
-  update_interval = 150,     -- Base timer interval in ms
+require("catwalk").setup {
+  field_width = 10,           -- Width of the cat's path
+  cat_char = "🐈",            -- Emoji used for the cat
+  update_interval = 150,      -- Base timer interval in ms
+  high_speed_postfix = "💨",  -- Emoji when CPU usage > high_speed_threshold
+  low_speed_postfix = "💤",   -- Emoji when CPU usage < low_speed_threshold
+  min_interval = 100,         -- Minimum update interval in ms
+  high_speed_threshold = 80.0,-- CPU usage (%) to consider high speed
+  low_speed_threshold = 10.0, -- CPU usage (%) to consider low speed
 }
 ```

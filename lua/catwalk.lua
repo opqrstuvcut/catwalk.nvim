@@ -5,9 +5,10 @@ local config = {
 	cat_char = "🐈",
 	update_interval = 150,
 	high_speed_postfix = "💨",
-	low_speed_postfix = "  ",
+	low_speed_postfix = "💤",
 	min_interval = 100,
 	high_speed_threshold = 80.0,
+	low_speed_threshold = 10.0,
 }
 
 local pos = config.field_width
@@ -41,9 +42,11 @@ local function update()
 	end
 	local interval = (100 - cpu_usage) * 10 + config.min_interval
 
-	pos = pos - 1
-	if pos < 1 then
-		pos = config.field_width -- 左端に達したら右端へワープ
+	if cpu_usage > config.low_speed_threshold then
+		pos = pos - 1
+		if pos < 1 then
+			pos = config.field_width -- 左端に達したら右端へワープ
+		end
 	end
 
 	timer:stop()
@@ -64,7 +67,13 @@ end
 
 function M.component()
 	local line = (" "):rep(config.field_width)
-	local postfix = (cpu_usage > config.high_speed_threshold and config.high_speed_postfix or config.low_speed_postfix)
+
+	local postfix = (
+		(cpu_usage > config.high_speed_threshold and config.high_speed_postfix)
+		or (cpu_usage < config.low_speed_threshold and config.low_speed_postfix)
+		or ""
+	)
+	postfix = string.format("%2s", postfix)
 	return line:sub(1, pos - 1) .. config.cat_char .. postfix .. line:sub(pos + 1)
 end
 
